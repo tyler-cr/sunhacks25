@@ -44,7 +44,7 @@ Go to that url on your browser!
 
 ---
 
-##Usage
+## Usage
 1. Click *upload* and drop in your song
 2. Click *Get AI Preset* -- Gemini generates a fresh visual preset for your track
 3. Use the *Play/Pause* button to control the audio
@@ -52,6 +52,6 @@ Go to that url on your browser!
 
 ---
 
-##Dev Notes
+## Dev Notes
 - Flask's dev server is used here. For production, use a WSGI server like gunicorn or waitress
 - Uploaded files and generated presets are stored in the ```uploads/``` directory
