@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>SpectoVisualizer</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+</head>
+<body>
+
+  <div id="dog-bubble">sup</div>
+  <img src="{{ url_for('static', filename='dog.png') }}" id="dog-logo" alt="Dog Logo">
+
+
+  <button id="play">Get AI Preset</button>
+  
+  <form id="upload-form" action="/upload" method="POST" enctype="multipart/form-data">
+    <div id="drop-zone">Drag & Drop Music Here or Click</div>
+    <input type="file" id="file-input" name="music" accept=".mp3,.wav,.ogg" required>
+    <br><br>
+    <div class="center">
+      <button type="submit">Upload</button>
+    </div>
+  </form>
+
+  <!-- Popup -->
+  <div id="popup" class="popup"></div>
+  
+  <canvas id="gl"></canvas>
+
+  <!-- Audio player container -->
+  <div id="player-container">
+    <audio id="audio" controls></audio>
+  </div>
+
+  <button id="toggle-audio">Play</button>
+ 
+  <script>
+  const dog = document.getElementById("dog-logo");
+  const bubble = document.getElementById("dog-bubble");
+
+  dog.addEventListener("click", () => {
+    bubble.classList.add("show");
+    setTimeout(() => {
+      bubble.classList.remove("show");
+    }, 1000); // disappears after 1 second
+  });
+</script>
+
+
+  <script>
+  const audio = document.getElementById("audio");
+  const toggleBtn = document.getElementById("toggle-audio");
+
+  toggleBtn.addEventListener("click", () => {
+    if (audio.paused) {
+      audio.play();
+      toggleBtn.textContent = "Pause";
+    } else {
+      audio.pause();
+      toggleBtn.textContent = "Play";
+    }
+  });
+
+  // Keep button in sync if user clicks the built-in audio controls
+  audio.addEventListener("play", () => {
+    toggleBtn.textContent = "Pause";
+  });
+
+  audio.addEventListener("pause", () => {
+    toggleBtn.textContent = "Play";
+  });
+</script>
+
+
+  
+  <script>
+  document.getElementById("play").addEventListener("click", async () => {
+
+    const toggleBtn = document.getElementById("toggle-audio");
+    toggleBtn.textContent = "Pause";
+
+    try {
+      // 1. Ask backend which variables file is active
+      const varsRes = await fetch("/active-vars");
+      const varsData = await varsRes.json();
+      if (!varsData.vars) {
+        console.error("No active vars file yet");
+        return;
+      }
+
+      // 2. Import variables module with cache-busting
+      const varsModule = await import(`/uploads/${varsData.vars}?t=${Date.now()}`);
+      console.log("[DEBUG] Reloaded variables:", varsModule);
+
+      // 3. Ask backend which preset to load
+      const presetRes = await fetch("/get-script");
+      const presetData = await presetRes.json();
+
+      // 4. Import preset module with cache-busting
+      const presetModule = await import(`/static/${presetData.script_path}?t=${Date.now()}`);
+      console.log("[DEBUG] Reloaded preset:", presetModule);
+
+      // 5. Clear canvas
+      const canvas = document.getElementById("gl");
+      const gl = canvas.getContext("webgl");
+      if (gl) {
+        gl.clearColor(0, 0, 0, 1);
+        gl.clear(gl.COLOR_BUFFER_BIT | gl.DEPTH_BUFFER_BIT);
+        console.log("[DEBUG] Canvas cleared");
+      }
+
+      // 6. Start preset with fresh variables
+      if (typeof presetModule.startPreset === "function") {
+        presetModule.startPreset(varsModule);
+      } else {
+        console.error("Preset module did not export startPreset()");
+      }
+    } catch (err) {
+      console.error("Error starting visualizer:", err);
+    }
+  });
+</script>
+
+
+
+
+  <!-- Uploader logic -->
+  <script src="{{ url_for('static', filename='uploader.js') }}"></script>
+</body>
+</html>

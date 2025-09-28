@@ -1,0 +1,187 @@
+body {
+  margin: 0;
+  background: linear-gradient(180deg, #000000, #1a1a1a); /* black → dark grey */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  gap: 16px;
+}
+
+.title {
+  text-align: center;
+}
+
+#dog-logo {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 60px;   /* adjust size as needed */
+  height: auto;
+  z-index: 1000; /* stays above canvas */
+}
+
+#drop-zone {
+  width: 300px;
+  height: 150px;
+  border: 2px dashed #666;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  font-family: Arial, sans-serif;
+  margin: 16px auto; /* spacing */
+  cursor: pointer;
+  opacity: 0.3; /* dim by default */
+  transition: all 0.2s ease-in-out;
+}
+
+#drop-zone:hover {
+  opacity: 1; /* brighten on hover */
+}
+
+#drop-zone.dragover {
+  border-color: #1db954;
+  color: #1db954;
+  background: #f7fff7;
+  opacity: 1; /* fully visible while dragging */
+}
+
+#file-input {
+  display: none;
+}
+
+/* Generic button styles */
+button {
+  padding: 12px 24px;
+  font-size: 18px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  background: rgba(34, 34, 34, 0.8);
+  color: white;
+  opacity: 0.3; /* dim by default */
+  transition: opacity 0.3s ease, background 0.3s ease, transform .3s ease;
+  margin: 8px 0; /* space between stacked buttons */
+  width: 200px; /* consistent width for all buttons */
+}
+
+button:hover {
+  transform: scale(1.05);
+  background: rgba(34, 34, 34, 1);
+  opacity: 1; /* brighten on hover */
+}
+
+/* Button container ensures column layout */
+
+
+#gl {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  border-radius: 0;
+  box-shadow: none;
+  z-index: -99;
+}
+
+#upload {
+  position: fixed;
+}
+
+.popup {
+  visibility: hidden;
+  min-width: 200px;
+  background: #333;
+  color: #fff;
+  text-align: center;
+  border-radius: 8px;
+  padding: 12px;
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.4s ease, visibility 0.4s;
+}
+
+/* Style the form block */
+#upload-form {
+  display: flex;
+  flex-direction: column;  /* stack drop zone + button vertically */
+  align-items: center;     /* center them horizontally */
+  gap: 12px;               /* spacing between drop zone and upload button */
+  width: 100%;             /* match parent column width */
+}
+
+
+.popup.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+#audio {
+  display: none;
+}
+
+#dog-logo {
+  position: fixed;
+  top: 10px;
+  right: 10px;
+  width: 64px;
+  height: 64px;
+  z-index: 1000;
+  cursor: pointer;
+}
+
+/* Continuous spin on hover */
+#dog-logo:hover {
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* Chat bubble */
+#dog-bubble {
+  position: fixed;
+  top: 80px;        /* below the dog */
+  right: 15px;
+  background: white;
+  color: black;
+  padding: 6px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 1001;
+}
+
+/* Bubble Tail */
+#dog-bubble::after {
+  content: "";
+  position: absolute;
+  top: -8px;           /* place tail above the bubble */
+  right: 15px;         /* adjust horizontally */
+  border-width: 8px;
+  border-style: solid;
+  border-color: transparent transparent white transparent; /* down-pointing triangle */
+  filter: drop-shadow(0 -1px 1px rgba(0,0,0,0.2));         /* shadow for consistency */
+}
+
+/* Show animation */
+#dog-bubble.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+

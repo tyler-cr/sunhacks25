@@ -1,0 +1,19 @@
+Field,Type,Default,Notes
+bar_count_default,INTEGER,128,Good baseline for bar visualizers
+clear_color_default,TEXT,#000000,Black background
+time_scale_default,REAL,1.0,Normal time scaling
+base_color_low_default,TEXT,#222222,Dark gray for low amplitude
+base_color_high_default,TEXT,#FFFFFF,White for high amplitude
+intensity_gamma_default,REAL,1.5,Slight boost to intensity curve
+base_radius_default,REAL,0.05,Small circle base radius
+radius_scale_default,REAL,1.2,Scales radius growth moderately
+line_thickness_default,REAL,0.02,Thin line weight
+drop_height_min_default,REAL,0.1,Smallest droplet height
+drop_height_max_default,REAL,1.0,Tallest droplet height
+fall_speed_min_default,REAL,0.5,Slowest fall speed
+fall_speed_max_default,REAL,2.0,Fastest fall speed
+drop_spacing_min_default,REAL,0.05,Minimum spacing between drops
+drop_spacing_max_default,REAL,0.3,Maximum spacing between drops
+activation_threshold_default,REAL,0.15,Prevents tiny noise triggering effects
+edge_softness_inner_default,REAL,0.1,Soft fade on inside edge
+edge_softness_outer_default,REAL,0.25,Softer fade on outer edge
