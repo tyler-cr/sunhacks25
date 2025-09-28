@@ -5,6 +5,10 @@ Drop in your favorite track, and watch as Specto (our purple bulldog mascot 🐶
 
 ![Specto Logo](static/dog.png)
 
+
+# DEMO
+
+[![Watch the video]](https://youtu.be/uMUpQ_b3-9I)
 ---
 
 ## 🚀 Features
