@@ -1,9 +1,9 @@
-# 🎶 SpectoVisualizer
+# 🎶 SpecrtoVisualizer
 
-SpectoVisualizer is an AI-powered music visualizer built with **Flask**, **WebGL**, and **Google’s Gemini API**.  
-Drop in your favorite track, and watch as Specto (our purple bulldog mascot 🐶💜 with golden headphones) generates dynamic, AI-driven visual presets that react to the beat.  
+SpectroVisualizer is an AI-powered music visualizer built with **Flask**, **WebGL**, and **Google’s Gemini API**.  
+Drop in your favorite track, and watch as Spectro (our purple bulldog mascot 🐶💜 with golden headphones) generates dynamic, AI-driven visual presets that react to the beat.  
 
-![Specto Logo](static/dog.png)
+![Specrto Logo](static/dog.png)
 
 
 # DEMO (MAKE SURE TO OPEN IN NEW TAB)
@@ -19,7 +19,7 @@ Drop in your favorite track, and watch as Specto (our purple bulldog mascot 🐶
 - 🖼️ AI-generated visual presets via Google Gemini  
 - 🔮 Variables auto-update per upload (color palettes, animation parameters, etc.)  
 - 🎛️ Live WebGL audio-reactive rendering  
-- 🐶 **Specto the Bulldog**
+- 🐶 **Specrto the Bulldog**
 
 ---
 
@@ -27,8 +27,8 @@ Drop in your favorite track, and watch as Specto (our purple bulldog mascot 🐶
 
 ### 1. Clone the repo
 ```bash
-git clone https://github.com/yourusername/spectovisualizer.git
-cd spectovisualizer
+git clone https://github.com/yourusername/spectrovisualizer.git
+cd spectrovisualizer
 ```
 
 ### 2. Install dependencies
