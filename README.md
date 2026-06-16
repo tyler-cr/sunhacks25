@@ -19,7 +19,7 @@ Drop in your favorite track, and watch as Spectro (our purple bulldog mascot �
 - 🖼️ AI-generated visual presets via Google Gemini  
 - 🔮 Variables auto-update per upload (color palettes, animation parameters, etc.)  
 - 🎛️ Live WebGL audio-reactive rendering  
-- 🐶 **Specrto the Bulldog**
+- 🐶 **Spectro the Bulldog**
 
 ---
 
