@@ -1,4 +1,4 @@
-# 🎶 SpecrtoVisualizer
+# 🎶 SpectroVisualizer
 
 SpectroVisualizer is an AI-powered music visualizer built with **Flask**, **WebGL**, and **Google’s Gemini API**.  
 Drop in your favorite track, and watch as Spectro (our purple bulldog mascot 🐶💜 with golden headphones) generates dynamic, AI-driven visual presets that react to the beat.  
